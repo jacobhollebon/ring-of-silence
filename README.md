@@ -30,8 +30,8 @@ Each script corresponds to performing the relevant simulations and plots for a s
 ## Requirements
 
 - Python
-- `numpy`, `matplotlib`, `scipy`, `scienceplots`, 'hos'
-- The HOS python toolbox is used for core spherical/harmonic operations and can be found here https://github.com/jacobhollebon/hos/
+- `numpy`, `matplotlib`, `scipy`, `scienceplots`, `hos`
+- The HOS python toolbox is used for core spherical/circular harmonic operations and can be found here https://github.com/jacobhollebon/hos/
 
 Install dependencies via:
 
@@ -63,7 +63,7 @@ DOI: [10.5281/zenodo.3928296](https://doi.org/10.5281/zenodo.3928296)
 
 Licensed under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/) license.
 
-The data has been modified for use in this project.
+`data/ku100_circular.npz` corresponds to the `HRIR_CIRC360` measurement set
 
 
 ## License
@@ -87,5 +87,5 @@ See the [LICENSE](./LICENSE) file or visit [https://creativecommons.org/licenses
 ## Contact
 
 For questions or collaborations:  
-[j.hollebon@soton.ac.uk | [filippo.fazi@soton.ac.uk]  
+j.hollebon@soton.ac.uk | filippo.fazi@soton.ac.uk 
 (ISVR, University of Southampton)
