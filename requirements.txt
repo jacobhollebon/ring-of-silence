@@ -1,0 +1,5 @@
+numpy
+matplotlib
+Script
+scienceplots
+git+https://github.com/jacobhollebon/hos.git
