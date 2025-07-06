@@ -64,6 +64,7 @@ DOI: [10.5281/zenodo.3928296](https://doi.org/10.5281/zenodo.3928296)
 Licensed under the [Creative Commons Attribution 3.0 Unported (CC BY 3.0)](https://creativecommons.org/licenses/by/3.0/) license.
 
 `data/ku100_circular.npz` corresponds to the `HRIR_CIRC360` measurement set
+
 `data/ku100_2702.npz` corresponds to the `HRIR_2702` measurement set
 
 
