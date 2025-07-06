@@ -7,7 +7,6 @@
 # Figure 2
 # Description: Aliasing analysis of a spherical loudspeaker array performing 3D Ambisonics
 # 
-#
 # This script supports the analyses and results presented in the above paper.
 # Please cite the paper if you use or adapt this code for academic purposes.
 #

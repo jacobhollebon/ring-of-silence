@@ -63,7 +63,7 @@ def loadMicArrayTFs(azimuths, loadFolder):
         y coordinates of each of the microphone array elements.
 
     '''
-    data = np.load(loadFolder / 'micarray_3m_tfs_comp.npz')
+    data = np.load(loadFolder / 'micarray_3m.npz')
     array = data['arrayTFs']
     angles = data['azimuths']
     

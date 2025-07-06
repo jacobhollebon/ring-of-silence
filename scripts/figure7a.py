@@ -4,9 +4,8 @@
 #
 # Authors: Jacob Hollebon, Filippo Maria Fazi
 #
-# Figure 5a and 5b
-# Description: Soundfield energy over a circular region reproduced by a circular 
-# loudspeaker array performing 2D Ambisonics using measured loudspeaker transfer functions
+# Figure 7a
+# Description: Energy analysis of reproduced HRTFs using 2D Ambisonics
 #
 # This script supports the analyses and results presented in the above paper.
 # Please cite the paper if you use or adapt this code for academic purposes.
