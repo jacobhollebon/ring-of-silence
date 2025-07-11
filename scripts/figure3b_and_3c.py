@@ -113,7 +113,8 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
     
     ylims = [-25, 5] 
     ax1.vlines(N, ylims[0], ylims[1], color='0.1', ls='--')
-    ax1.vlines(Na+1, ylims[0], ylims[1], color='0.1', ls='--')
+    if currSpeakerPositionFile in ['spherical_O6_84pt_t12.npy']:
+        ax1.vlines(Na+1, ylims[0], ylims[1], color='0.1', ls='--')
     
     ax1.set_xlabel(r'kr');
     ax1.set_ylabel(r'SPL (dB)')
