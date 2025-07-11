@@ -116,7 +116,7 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
         
     leg = ax.legend(loc=3, framealpha=0.7, facecolor='white', frameon=True)
     leg.get_frame().set_linewidth(0.0)
-    ax.set_ylabel(r'$h$ (dB)')
+    ax.set_ylabel(r'$E_n$ (dB)')
     ax.set_xlabel('ka')
     ax.set_xlim(0,44)
     ax.set_ylim(ylims[0],ylims[1])
