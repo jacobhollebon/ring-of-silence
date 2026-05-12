@@ -29,7 +29,7 @@ import matplotlib as mpl; mpl.rcParams['figure.dpi'] = 200;  mpl.rcParams['savef
 
 # Find path to save figures to location "repo/figures"
 repoRoot = Path(__file__).parent.parent.resolve()
-saveFolder = repoRoot / "figures"
+saveFolder = repoRoot / "avarig_figures"
 saveFolder.mkdir(parents=True, exist_ok=True) # Make the folder if it does not exist
 
 save = True  # Bool to trigger saving the figures
@@ -45,7 +45,7 @@ N_dense = 40 # order up to which reference is calculated, approximates infty
 
 # Loudspeaker positions
 dataFolder = repoRoot / "data" 
-speakerPositionFiles = ['spherical_O6_84pt_t12.npy', 'spherical_O6_equalarea.npy']
+speakerPositionFiles = ['lebedev_2702', 'spherical_O6_84pt_t12.npy', 'spherical_O6_equalarea.npy']
 
 Nfft = 2**13
 c = 343 # speed of sound
@@ -66,15 +66,18 @@ h = np.linalg.pinv(Y_dense) @ hrtf[:,0,:] # SH HRTF coefficents up to reference 
 #%%
 
 for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
-        
+    
     # Load and format the sampling positions
-    loadPath = dataFolder / currSpeakerPositionFile
-    samplingPositions = np.load(loadPath) 
-    samplingPositions = samplingPositions.T 
-    samplingPositions[:,0] = samplingPositions[:,0] % 360 # Map azimuth to between 0-360
-    samplingPositions = samplingPositions[:,:2] # remove radial
-    samplingPositions = np.deg2rad(samplingPositions)
-    samplingPositions = np.concatenate((samplingPositions, np.ones((samplingPositions.shape[0], 1))), axis=1) # add radius of 1 for compatability with HOS toolbox
+    if currSpeakerPositionFile == 'lebedev_2702':
+        samplingPositions = phi_dense.copy()
+    else:
+        loadPath = dataFolder / currSpeakerPositionFile
+        samplingPositions = np.load(loadPath) 
+        samplingPositions = samplingPositions.T 
+        samplingPositions[:,0] = samplingPositions[:,0] % 360 # Map azimuth to between 0-360
+        samplingPositions = samplingPositions[:,:2] # remove radial
+        samplingPositions = np.deg2rad(samplingPositions)
+        samplingPositions = np.concatenate((samplingPositions, np.ones((samplingPositions.shape[0], 1))), axis=1) # add radius of 1 for compatability with HOS toolbox
     L  = samplingPositions.shape[0] # number of speakers in array
     
     
@@ -99,40 +102,40 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
     E_trunc = np.sum(np.abs(h_trunc)**2,  axis=0)
     
     
-    # #%% Plot energy of HRTF SH coefficients
+    #%% Plot energy of HRTF SH coefficients
     
-    # plotOrders = np.arange(0,5,1)
-    # plotACN = plotOrders**2 + plotOrders + 0 # use m=0 only
-    # norm = np.sum(np.abs(h),axis=0)
-    # ylims = [-60, 0]
+    plotOrders = np.arange(0,N+1,1)
+    plotACN = plotOrders**2 + plotOrders + 0 # use m=0 only
+    norm = np.sum(np.abs(h),axis=0)
+    ylims = [-60, 0]
     
-    # fig = plt.figure()
-    # ax = fig.add_subplot(1, 1, 1)
-    # colors = ['C0','C1','C2','C3','m']
-    # for i, order in enumerate(plotOrders):
-    #     color = colors[i]
-    #     idxstart = order**2 + order - order
-    #     idxstop = order**2 + order + order
+    fig = plt.figure()
+    ax = fig.add_subplot(1, 1, 1)
+    colors = ['C0','C1','C2','C3','m']
+    for i, order in enumerate(plotOrders):
+        color = colors[i]
+        idxstart = order**2 + order - order
+        idxstop = order**2 + order + order
         
-    #     sumEnergy = np.sum(np.abs(h[idxstart:idxstop+1,:]), axis=0)
+        sumEnergy = np.sum(np.abs(h_tilde[idxstart:idxstop+1,:]), axis=0)
         
-    #     lab = r'$n=$'+str(order)
+        lab = r'$n=$'+str(order)
         
-    #     ax.semilogx(ka, 20*np.log10(abs(sumEnergy/norm)), label=lab, color=color)
+        ax.semilogx(ka, 20*np.log10(abs(sumEnergy/norm)), label=lab, color=color)
         
-    # leg = ax.legend(loc=3, framealpha=0.7, facecolor='white', frameon=True)
-    # leg.get_frame().set_linewidth(0.0)
-    # ax.set_ylabel(r'$h$ (dB)')
-    # ax.set_xlabel('ka')
-    # ax.set_xlim(0,44)
-    # ax.set_ylim(ylims[0],ylims[1])
-    # ax.grid(visible=True, which='major', linestyle='-')
-    # ax.grid(True, which='minor', linestyle='--') 
-    # ax.minorticks_on()
-    # fig.tight_layout()
-    # if save:
-    #     pdf = '.pdf'
-    #     fig.savefig(saveFolder / f'figure6_magls{pdf}')
+    leg = ax.legend(loc=3, framealpha=0.7, facecolor='white', frameon=True)
+    leg.get_frame().set_linewidth(0.0)
+    ax.set_ylabel(r'$h$ (dB)')
+    ax.set_xlabel('ka')
+    ax.set_xlim(0,44)
+    ax.set_ylim(ylims[0],ylims[1])
+    ax.grid(visible=True, which='major', linestyle='-')
+    ax.grid(True, which='minor', linestyle='--') 
+    ax.minorticks_on()
+    fig.tight_layout()
+    if save:
+        pdf = '.pdf'
+        fig.savefig(saveFolder / f'hrtfcoeffs_magls_{currSpeakerPositionFile.strip(".npy")}{pdf}')
         
     #%% Plot energy of average HRTF
     
@@ -160,7 +163,8 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
     if save:
         label = chr(ord('b') + idx)  # 'a', 'b', 'c', ...
         pdf = '.pdf'
-        fig2.savefig(saveFolder / f'figure7{label}_magls{pdf}')
+        fig2.savefig(saveFolder / f'energy_magls_{currSpeakerPositionFile.strip(".npy")}{pdf}')
+        
     
     
     
