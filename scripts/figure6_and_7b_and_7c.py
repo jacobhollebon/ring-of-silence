@@ -89,7 +89,7 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
         
     E = np.sum(np.abs(h_tilde)**2,  axis=0)
     E_dense = np.sum(np.abs(h)**2,  axis=0)
-    h_trunc = h[:(2*N+1)]
+    h_trunc = h[:(N+1)**2]
     E_trunc = np.sum(np.abs(h_trunc)**2,  axis=0)
     
     
