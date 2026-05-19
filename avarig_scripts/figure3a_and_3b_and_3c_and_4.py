@@ -108,7 +108,7 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
     plotOrders = np.arange(0,N+1,1)
     plotACN = plotOrders**2 + plotOrders + 0 # use m=0 only
     norm = np.sum(np.abs(h),axis=0)
-    ylims = [-60, 0]
+    ylims = [-55, -5]
     
     isSeparatePlots = True # if True, plots various h_n in different plots
     
@@ -132,12 +132,12 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
         if isSeparatePlots:
             fig = plt.figure()
             ax = fig.add_subplot(1, 1, 1)  
-            ax.plot(ka, 20*np.log10(abs(sumEnergy_MM/norm)), '--', label=lab, color=color)
-            ax.plot(ka, 20*np.log10(abs(sumEnergy_tilde/norm)),'-', label=lab_tilde, color=color)
+            ax.plot(ka, 20*np.log10(abs(sumEnergy_MM/norm)), '-', label=lab, color=color)
+            ax.plot(ka, 20*np.log10(abs(sumEnergy_tilde/norm)),'--', label=lab_tilde, color=color)
             
-            # ax.legend()
+            ax.legend(['Mode-matching', 'MagLS'])
             ax.set_ylabel(rf'$E_{plotOrders[i]}$ (dB)')
-            ax.set_xlabel('ka')
+            ax.set_xlabel('kr')
             ax.set_xlim(0,44)
             ax.set_ylim(ylims[0],ylims[1])
             ax.grid(visible=True, which='major', linestyle='-')
@@ -153,14 +153,14 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
                 fig.savefig(saveFolder / f'figure3{chr(ord("a")+i)}{pdf}')
                 
         if not isSeparatePlots:
-            ax.plot(ka, 20*np.log10(abs(sumEnergy_MM/norm)), '--', label=lab, color=color)
-            ax.plot(ka, 20*np.log10(abs(sumEnergy_tilde/norm)),'-', label=lab_tilde, color=color)
+            ax.plot(ka, 20*np.log10(abs(sumEnergy_MM/norm)), '-', label=lab, color=color)
+            ax.plot(ka, 20*np.log10(abs(sumEnergy_tilde/norm)),'--', label=lab_tilde, color=color)
         
 
     if not isSeparatePlots:
         ax.legend()
         ax.set_ylabel(r'$E_n$ (dB)')
-        ax.set_xlabel('ka')
+        ax.set_xlabel('kr')
         ax.set_xlim(0,44)
         ax.set_ylim(ylims[0],ylims[1])
         ax.grid(visible=True, which='major', linestyle='-')
@@ -184,12 +184,12 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
     
     ax2.plot(ka, 10*np.log10(abs(E_dense)), label='Reference')
     ax2.plot(ka, 10*np.log10(abs(E_trunc)),   ls='-.', label = 'Truncated')
-    ax2.plot(ka, 10*np.log10(abs(E_MM)), ls=':', label= 'Reproduced ModeMatching')
+    ax2.plot(ka, 10*np.log10(abs(E_MM)), ls=':', label= 'Reproduced Mode-matching')
     ax2.plot(ka, 10*np.log10(abs(E)), ls=':', label= 'Reproduced MagLS')
     
              
     ax2.set_ylabel(r'SPL$_B$ (dB)')
-    ax2.set_xlabel('ka')
+    ax2.set_xlabel('kr')
     ax2.vlines(N, ylims[0], ylims[1], color='0.1', ls='--')
     ax2.vlines(Na+1, ylims[0], ylims[1], color='0.1', ls='--')
     ax2.set_xlim(0,44)
