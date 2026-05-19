@@ -95,13 +95,7 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
     # Magls
     Y_N, YpinvMagls, h_tilde = iSHTmagls(x, samplingPositions, N=N, kind=SHdef, fade=100)
     
-    # TODO: Remove this bit?
-    # h_tilde = Ypinv @ np.abs(x) #tried alternative approach...
-    # # Use this to demonstrate that if you project x onto the range of Y_N, i.e. Px= Y_N Y_n_pinvx, then take abs value, and calculate spherical harmonic analsysis, the there will be energy also above order N   
-    # Y_N_high = sphHarm(pos=samplingPositions, N=N*2, kind=SHdef, plot=True)
-    # Ypinv_high = np.linalg.pinv(Y_N_high)
-    # h_tilde_MM = Ypinv_high @ np.abs(Y_N @ Ypinv @ x)    
-        
+    # Energy calculations    
     E = np.sum(np.abs(h_tilde)**2,  axis=0)
     E_MM = np.sum(np.abs(h_tilde_MM)**2,  axis=0)
     E_dense = np.sum(np.abs(h)**2,  axis=0)
@@ -112,7 +106,6 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
     #%% Plot energy of HRTF SH coefficients
     
     plotOrders = np.arange(0,N+1,1)
-    # plotOrders =np.array( [0,1,2, 3, 4, 5] )# plot higher order to show that abs(Px) is not limited to order N #TODO: Delete
     plotACN = plotOrders**2 + plotOrders + 0 # use m=0 only
     norm = np.sum(np.abs(h),axis=0)
     ylims = [-60, 0]
@@ -157,7 +150,7 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
             fig.tight_layout()
             if save:
                 pdf = '.pdf'
-                fig.savefig(saveFolder / f'figure3_{chr(ord("a")+i)}{pdf}')
+                fig.savefig(saveFolder / f'figure3{chr(ord("a")+i)}{pdf}')
                 
         if not isSeparatePlots:
             ax.plot(ka, 20*np.log10(abs(sumEnergy_MM/norm)), '--', label=lab, color=color)
