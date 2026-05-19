@@ -175,10 +175,10 @@ for idx, currSpeakerPositionFile in enumerate(speakerPositionFiles):
         ax.minorticks_on()
         ax.vlines(N, ylims[0], ylims[1], color='0.1', ls='--') # line at ka=N - transition freq.
             
-    fig.tight_layout()
-    if save:
-        pdf = '.pdf'
-        fig.savefig(saveFolder / f'figure3{pdf}')
+        fig.tight_layout()
+        if save:
+            pdf = '.pdf'
+            fig.savefig(saveFolder / f'figure3{pdf}')
     
     
         
