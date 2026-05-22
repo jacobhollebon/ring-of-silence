@@ -1,15 +1,15 @@
 # -----------------------------------------------------------------------------
 # Script for the paper:
-# "The Ring of Silence in Ambisonics and Binaural Audio Reproduction"
+# "Investigating the 'Ring of Silence' in Loudspeaker and Binaural
+#  Reproduction Using Advanced Ambisonic Decoding Strategies"
 #
-# Authors: Jacob Hollebon, Filippo Maria Fazi
+# Authors: Filippo Maria Fazi, Jacob Hollebon, Yueheng Li
 #
-# Figure 3b and 3c
-# Description: Average energy reproduced by a spherical loudspeaker array performing 3D Ambisonics
+# Reproduce Figure 1 using Lasso
+# Description:  Generate Figure 1 in the paper using Lasso regularisation, implemented with scikit-learn. 
 #
 # This script supports the analyses and results presented in the above paper.
 # Please cite the paper if you use or adapt this code for academic purposes.
-#
 # License: Creative Commons Attribution 4.0 International (CC BY 4.0)
 # https://creativecommons.org/licenses/by/4.0/
 # -----------------------------------------------------------------------------

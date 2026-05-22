@@ -1,10 +1,11 @@
 # -----------------------------------------------------------------------------
 # Script for the paper:
-# "The Ring of Silence in Ambisonics and Binaural Audio Reproduction"
+# "Investigating the 'Ring of Silence' in Loudspeaker and Binaural
+#  Reproduction Using Advanced Ambisonic Decoding Strategies"
 #
-# Authors: Jacob Hollebon, Filippo Maria Fazi
+# Authors: Filippo Maria Fazi, Jacob Hollebon, Yueheng Li
 #
-# Reproduce Figure 6, 7b and 7c using a magls decoder
+# Reproduce Figure3a and 3b using a magls decoder
 # Description: Energy analysis of HRTF SH coefficients and reproduced HRTFs using 3D Ambisonics and magls
 #
 # This script supports the analyses and results presented in the above paper.
