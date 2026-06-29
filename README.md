@@ -1,16 +1,26 @@
-# The Ring of Silence in Ambisonics and Binaural Audio Reproduction
+# The Ring of Silence — Code Repository
 
-**Authors**: Jacob Hollebon, Filippo Maria Fazi  
-**Affiliation**: Institute of Sound and Vibration Research (ISVR), University of Southampton  
-**Year**: 2025
+**Authors**: Filippo Maria Fazi, Jacob Hollebon  
+**Affiliation**: Institute of Sound and Vibration Research (ISVR), University of Southampton
 
 ## Overview
 
-This repository contains Python scripts that support the analyses, simulations, and visualizations presented in the paper:
+This repository contains Python scripts supporting two related publications on the "Ring of Silence" phenomenon in Ambisonics and binaural audio reproduction.
 
-**"The Ring of Silence in Ambisonics and Binaural Audio Reproduction"**
+### IEEE TASLP Paper (Primary)
 
-Each script corresponds to performing the relevant simulations and plots for a specific figure in the paper. 
+**"The Ring of Silence in Ambisonics: Spectral Impairments in Loudspeaker and Binaural Reproduction"**  
+F. M. Fazi and J. Hollebon — *IEEE Transactions on Audio, Speech and Language Processing*, vol. 34, pp. 1061–1071, 2026  
+DOI: [10.1109/TASLPRO.2026.3655624](https://doi.org/10.1109/TASLPRO.2026.3655624)
+
+Scripts and figures in `scripts/` and `figures/`.
+
+### AVARIG 2026 Conference Paper (Extension)
+
+**"Investigating the 'Ring of Silence' in Loudspeaker and Binaural Reproduction Using Advanced Ambisonic Decoding Strategies"**  
+F. M. Fazi, J. Hollebon, Y. Li — *AES International Conference on Audio for Virtual and Augmented Reality and Immersive Games*, Paris, France, June 30 – July 3, 2026
+
+Scripts and figures in `avarig_scripts/` and `avarig_figures/`.
 
 ## Structure
 
@@ -18,13 +28,12 @@ Each script corresponds to performing the relevant simulations and plots for a s
 .
 ├── LICENSE
 ├── README.md
-├── data/ # Accompanying data required for the simulations
-├── scripts/ # Python scripts to generate each figure
-│ ├── figure1.py
-│ ├── figure2.py
-│ └── ...
-└── figures/ # Output folder for saved figures and data
-
+├── requirements.txt
+├── data/                  # Shared data for all simulations
+├── scripts/               # Scripts for IEEE TASLP paper figures
+├── figures/               # Output figures for IEEE TASLP paper
+├── avarig_scripts/        # Scripts for AVARIG 2026 paper figures
+└── avarig_figures/        # Output figures for AVARIG 2026 paper
 ```
 
 ## Requirements
@@ -32,6 +41,7 @@ Each script corresponds to performing the relevant simulations and plots for a s
 - Python
 - `numpy`, `matplotlib`, `scipy`, `scienceplots`, `hos`
 - The HOS python toolbox is used for core spherical/circular harmonic operations and can be found here https://github.com/jacobhollebon/hos/
+- A working LaTeX installation is required for rendering plot labels and annotations
 
 Install dependencies via:
 
@@ -47,9 +57,13 @@ pip install -r requirements.txt
    cd ring-of-silence
    ```
 
-2. Run the desired script:
+2. Run the desired script, e.g. for the IEEE paper:
    ```bash
-   python figure_1.py
+   python scripts/figure1.py
+   ```
+   Or for the AVARIG paper:
+   ```bash
+   python avarig_scripts/figure3a_and_3b_and_3c_and_4.py
    ```
 
 ## Third-Party Data Attribution
@@ -76,18 +90,36 @@ See the [LICENSE](./LICENSE) file or visit [https://creativecommons.org/licenses
 
 ## Citation
 
+If you use this code, please cite the relevant paper(s):
+
+### IEEE TASLP Paper
+
 ```
-@article{hollebon2025ring,
-  title     = {The Ring of Silence in Ambisonics and Binaural Audio Reproduction},
-  author    = {Filippo Maria Fazi and Jacob Hollebon},
-  journal   = {<Journal/Conference Name>},
-  year      = {2025},
-  url       = {<DOI or URL>}
+@article{fazi2026ring,
+  title   = {The Ring of Silence in Ambisonics: Spectral Impairments in Loudspeaker and Binaural Reproduction},
+  author  = {Fazi, Filippo Maria and Hollebon, Jacob},
+  journal = {IEEE Transactions on Audio, Speech and Language Processing},
+  volume  = {34},
+  pages   = {1061--1071},
+  year    = {2026},
+  doi     = {10.1109/TASLPRO.2026.3655624}
+}
+```
+
+### AVARIG 2026 Paper
+
+```
+@inproceedings{fazi2026investigating,
+  title     = {Investigating the ``Ring of Silence'' in Loudspeaker and Binaural Reproduction Using Advanced Ambisonic Decoding Strategies},
+  author    = {Fazi, Filippo Maria and Hollebon, Jacob and Li, Yueheng},
+  booktitle = {AES International Conference on Audio for Virtual and Augmented Reality and Immersive Games},
+  address   = {Paris, France},
+  year      = {2026}
 }
 ```
 
 ## Contact
 
 For questions or collaborations:  
-j.hollebon@soton.ac.uk | filippo.fazi@soton.ac.uk 
+j.hollebon@soton.ac.uk | filippo.fazi@soton.ac.uk  
 (ISVR, University of Southampton)

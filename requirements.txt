@@ -2,4 +2,5 @@ numpy
 matplotlib
 Script
 scienceplots
+scikit-learn
 git+https://github.com/jacobhollebon/hos.git
