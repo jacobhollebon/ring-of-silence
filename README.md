@@ -41,6 +41,7 @@ Scripts and figures in `avarig_scripts/` and `avarig_figures/`.
 - Python
 - `numpy`, `matplotlib`, `scipy`, `scienceplots`, `hos`
 - The HOS python toolbox is used for core spherical/circular harmonic operations and can be found here https://github.com/jacobhollebon/hos/
+- A working LaTeX installation is required for rendering plot labels and annotations
 
 Install dependencies via:
 
